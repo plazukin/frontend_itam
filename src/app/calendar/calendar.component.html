@@ -1,0 +1,243 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10">
+                <div class="col-sm-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-warning">
+                            <div class="card-icon">
+                                <i class="material-icons">book_online</i>
+                            </div>
+                            <h4 class="card-title">Maintenance work</h4>
+                        </div>
+                        <div class="card-body">
+                            <div [ngSwitch]="new_event">
+                                <div *ngSwitchCase="true">
+                                    <app-modal
+                                            *ngIf="modal_open"
+                                            title="Add task"
+                                            add_or_update_button="add"
+                                            (close)="closeModal()"
+                                    >
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <p>Event title:</p>
+                                                </td>
+                                                <td>
+                                                    <mat-form-field class="form-group">
+                                                        <mat-label>Event title...</mat-label>
+                                                        <input matInput>
+                                                    </mat-form-field>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Event description:</p>
+                                                </td>
+                                                <td>
+                                                    <mat-form-field >
+                                                        <mat-label>Event description...</mat-label>
+                                                        <textarea matInput cols="29" rows="9"></textarea>
+                                                    </mat-form-field>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Event ticket:</p>
+                                                </td>
+                                                <td>
+                                                    <mat-form-field class="form-group">
+                                                        <mat-label>https://jira.croc.ru/browse/...</mat-label>
+                                                        <input matInput>
+                                                    </mat-form-field>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Responsible:</p>
+                                                </td>
+                                                <td>
+                                                    <mat-form-field class="form-group">
+                                                        <mat-label>Responsible...</mat-label>
+                                                        <input matInput>
+                                                    </mat-form-field>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Start event:</p>
+                                                </td>
+                                                <td>
+                                                    <mat-form-field >
+                                                        <mat-label>Choose a date</mat-label>
+                                                        <input matInput [matDatepicker]="picker">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="templateEvent.end != undefined">
+                                                <td>
+                                                    <p>End event:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.end}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>All day:</p>
+                                                </td>
+                                                <td [ngSwitch]="newEventInfo.allDay">
+                                                    <p *ngSwitchCase="true">Yes</p>
+                                                    <p *ngSwitchCase="false">No</p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </app-modal>
+                                </div>
+                                <div *ngSwitchCase="false">
+                                    <app-modal
+                                            *ngIf="modal_open"
+                                            title="Description task"
+                                            add_or_update_button="update"
+                                            (close)="closeModal()"
+                                    >
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <p>Event ID:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.id}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Event title:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.title}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Event description:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.description}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Event ticket:</p>
+                                                </td>
+                                                <td>
+                                                    <a href="https://jira.croc.ru/browse/{{templateEvent.ticket}}">{{templateEvent.ticket}}</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Responsible:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.responsible}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Start event:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.start}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="templateEvent.end != undefined">
+                                                <td>
+                                                    <p>End event:</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{templateEvent.end}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>All day:</p>
+                                                </td>
+                                                <td [ngSwitch]="templateEvent.allDay">
+                                                    <p *ngSwitchCase="true">Yes</p>
+                                                    <p *ngSwitchCase="false">No</p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </app-modal>
+                                </div>
+                            </div>
+                            <full-calendar [options]="calendarOptions"></full-calendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-icon card-header-danger">
+                            <div class="card-icon">
+                                <i class="material-icons">info</i>
+                            </div>
+                            <h4 class="card-category">To do this week</h4>
+                            <h4 class="card-title">{{to_do}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-icon card-header-success">
+                            <div class="card-icon">
+                                <i class="material-icons">check_circle</i>
+                            </div>
+                            <h4 class="card-category">Made this week</h4>
+                            <h4 class="card-title">{{made_jobs}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-warning">
+                            <div class="card-icon">
+                                <i class="material-icons">settings</i>
+                            </div>
+                            <h4 class="card-title">Settings</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input " (change)="handleWeekendsToggle()" type="checkbox" >
+                                                <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>Show weekend</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -4,24 +4,33 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+// Fullcalendar
+import { FullCalendarModule } from '@fullcalendar/angular';
+// Fullcalendar plugins
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+// Material plugin
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatNativeDateModule } from '@angular/material/core'
+import { MatMomentDateModule } from '@angular/material-moment-adapter'
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+FullCalendarModule.registerPlugins([
+    dayGridPlugin,
+    interactionPlugin,
+    timeGridPlugin,
+    listPlugin
+]);
 
 @NgModule({
   imports: [
@@ -32,14 +41,17 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    FullCalendarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatMomentDateModule,
+    MatDatepickerModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
+    CalendarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

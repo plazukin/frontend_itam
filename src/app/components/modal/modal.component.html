@@ -1,0 +1,43 @@
+<div class="modal fade show backdrop" role="dialog" tabindex="-1" style="z-index:990;display: block; padding-right: 17px;">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >{{title}}</h5>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+            <div [ngSwitch]="add_or_update_button">
+                <div *ngSwitchCase="'add'" class="modal-footer">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-3">
+                                <button (click)="close.emit()" type="button" class="btn btn-success">Add</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" (click)="close.emit()" class="btn btn-secondary">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'update'" class="modal-footer">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button  type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <button *ngIf="update_button" (click)="close.emit()" type="button" class="btn btn-success">Update</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" (click)="close.emit()" class="btn btn-secondary">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
