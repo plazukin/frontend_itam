@@ -9,21 +9,21 @@ import {ModalComponent} from './modal/modal.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule
+    ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ModalComponent
+    ModalComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ModalComponent
+    ModalComponent,
   ]
 })
 export class ComponentsModule { }

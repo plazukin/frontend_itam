@@ -10,202 +10,13 @@
                             </div>
                             <h4 class="card-title">Maintenance work</h4>
                         </div>
-                        <div class="card-body">
-                            <div [ngSwitch]="new_event">
-                                <div *ngSwitchCase="true">
-                                    <app-modal
-                                            *ngIf="modal_open"
-                                            title="Add task"
-                                            add_or_update_button="add"
-                                            (close)="closeModal()"
-                                    >
-                                        <table class="table">
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <p>Event title:</p>
-                                                </td>
-                                                <td>
-                                                    <mat-form-field class="form-group">
-                                                        <mat-label>Event title...</mat-label>
-                                                        <input matInput>
-                                                    </mat-form-field>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Event description:</p>
-                                                </td>
-                                                <td>
-                                                    <mat-form-field >
-                                                        <mat-label>Event description...</mat-label>
-                                                        <textarea matInput cols="29" rows="9"></textarea>
-                                                    </mat-form-field>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Event ticket:</p>
-                                                </td>
-                                                <td>
-                                                    <mat-form-field class="form-group">
-                                                        <mat-label>https://jira.croc.ru/browse/...</mat-label>
-                                                        <input matInput>
-                                                    </mat-form-field>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Responsible:</p>
-                                                </td>
-                                                <td>
-                                                    <mat-form-field class="form-group">
-                                                        <mat-label>Responsible...</mat-label>
-                                                        <input matInput>
-                                                    </mat-form-field>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Start event:</p>
-                                                </td>
-                                                <td>
-                                                    <mat-form-field >
-                                                        <mat-label>Choose a date</mat-label>
-                                                        <input matInput [matDatepicker]="picker">
-                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                        <mat-datepicker #picker></mat-datepicker>
-                                                    </mat-form-field>
-                                                </td>
-                                            </tr>
-                                            <tr *ngIf="templateEvent.end != undefined">
-                                                <td>
-                                                    <p>End event:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.end}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>All day:</p>
-                                                </td>
-                                                <td [ngSwitch]="newEventInfo.allDay">
-                                                    <p *ngSwitchCase="true">Yes</p>
-                                                    <p *ngSwitchCase="false">No</p>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </app-modal>
-                                </div>
-                                <div *ngSwitchCase="false">
-                                    <app-modal
-                                            *ngIf="modal_open"
-                                            title="Description task"
-                                            add_or_update_button="update"
-                                            (close)="closeModal()"
-                                    >
-                                        <table class="table">
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <p>Event ID:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.id}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Event title:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.title}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Event description:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.description}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Event ticket:</p>
-                                                </td>
-                                                <td>
-                                                    <a href="https://jira.croc.ru/browse/{{templateEvent.ticket}}">{{templateEvent.ticket}}</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Responsible:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.responsible}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>Start event:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.start}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr *ngIf="templateEvent.end != undefined">
-                                                <td>
-                                                    <p>End event:</p>
-                                                </td>
-                                                <td>
-                                                    <p>{{templateEvent.end}}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p>All day:</p>
-                                                </td>
-                                                <td [ngSwitch]="templateEvent.allDay">
-                                                    <p *ngSwitchCase="true">Yes</p>
-                                                    <p *ngSwitchCase="false">No</p>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </app-modal>
-                                </div>
-                            </div>
-                            <full-calendar [options]="calendarOptions"></full-calendar>
+                        <div class="card-body ps">
+                            <full-calendar #calendar [options]="calendarOptions"></full-calendar>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-2">
-                <div class="col-md-12">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-icon card-header-danger">
-                            <div class="card-icon">
-                                <i class="material-icons">info</i>
-                            </div>
-                            <h4 class="card-category">To do this week</h4>
-                            <h4 class="card-title">{{to_do}}</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-icon card-header-success">
-                            <div class="card-icon">
-                                <i class="material-icons">check_circle</i>
-                            </div>
-                            <h4 class="card-category">Made this week</h4>
-                            <h4 class="card-title">{{made_jobs}}</h4>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-icon card-header-warning">
@@ -238,6 +49,230 @@
             </div>
         </div>
     </div>
+    <div [ngSwitch]="newEvent">
+        <div *ngSwitchCase="true">
+            <app-modal
+                    *ngIf="modalOpen"
+                    title="Add task"
+                    add_or_update_button="add"
+                    (close)="this.modalOpen = !this.modalOpen"
+                    (update)="updateEvent()"
+            >
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <p>Event title:</p>
+                        </td>
+                        <td colspan="2">
+                            <mat-form-field class="form-group">
+                                <mat-label>Event title...</mat-label>
+                                <input #newTitle (blur)="newEventInfo.title = newTitle.value" matInput>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Event description:</p>
+                        </td>
+                        <td colspan="2">
+                            <mat-form-field >
+                                <mat-label>Event description...</mat-label>
+                                <textarea #newDescription (blur)="newEventInfo.extendedProps.description = newDescription.value" matInput cols="29" rows="9"></textarea>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Event ticket:</p>
+                        </td>
+                        <td colspan="2">
+                            <mat-form-field class="form-group">
+                                <mat-label>C2OPS-666...</mat-label>
+                                <input #newTicket (blur)="newEventInfo.extendedProps.ticket = newTicket.value" matInput>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Responsible:</p>
+                        </td>
+                        <td colspan="2">
+                            <mat-form-field class="form-group">
+                                <mat-label>Responsible...</mat-label>
+                                <input #newResponsible (blur)="newEventInfo.extendedProps.responsible = newResponsible.value" matInput>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Start event:</p>
+                        </td>
+                        <td>
+                            <mat-form-field >
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="newStart" [(ngModel)]="newEventInfo.start">
+                                <mat-datepicker-toggle matSuffix [for]="newStart"></mat-datepicker-toggle>
+                                <mat-datepicker #newStart>
+                                    <mat-datepicker-actions>
+                                        <button (click)="fixDate('start')" class="btn btn-success btn-sm col-form-label-sm" mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                        <button class="btn btn-secondary btn-sm col-form-label-sm" mat-button matDatepickerCancel>Cancel</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <div class="col-form-label">
+                                <ngx-timepicker-field [(ngModel)]="newEventInfo.timeS" (timeChanged)="fixTime('start')" [format]="24" [disabled]="newEventInfo.allDay" [controlOnly]="true" ></ngx-timepicker-field>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>End event:</p>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="addEnd" [disabled]="newEventInfo.allDay" [(ngModel)]="newEventInfo.end">
+                                <mat-datepicker-toggle matSuffix [for]="addEnd"></mat-datepicker-toggle>
+                                <mat-datepicker #addEnd>
+                                    <mat-datepicker-actions>
+                                        <button class="btn btn-success btn-sm col-form-label-sm" (click)="fixDate('end')" mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                        <button class="btn btn-secondary btn-sm col-form-label-sm" mat-button matDatepickerCancel>Cancel</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <div class="col-form-label">
+                                <ngx-timepicker-field [(ngModel)]="newEventInfo.timeE" (timeChanged)="fixTime('end')" [format]="24" [disabled]="newEventInfo.allDay" [controlOnly]="true" ></ngx-timepicker-field>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>All day:</p>
+                        </td>
+                        <td colspan="2">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input " [checked]="newEventInfo.allDay" (change)="fixDateTime()" type="checkbox" >
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </app-modal>
+        </div>
+        <div *ngSwitchCase="false">
+            <app-modal
+                    *ngIf="modalOpen"
+                    title="Description task"
+                    add_or_update_button="update"
+                    (close)="this.modalOpen = !this.modalOpen"
+                    (update)="updateEvent()"
+                    (delete)="deleteEvent()"
+            >
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <p>Event title:</p>
+                        </td>
+                        <td colspan="2">
+                            <p>{{event.title}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Event description:</p>
+                        </td>
+                        <td *ngIf="event.extendedProps.description.length >= 18; else tagP" colspan="2">
+                            <mat-form-field >
+                                <textarea matInput cols="29" rows="9" [disabled]="true" [value]="event.extendedProps.description"></textarea>
+                            </mat-form-field>
+                        </td>
+                        <ng-template #tagP>
+                            <td colspan="2">
+                                <p>{{event.extendedProps.description}}</p>
+                            </td>
+                        </ng-template>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Event ticket:</p>
+                        </td>
+                        <td colspan="2">
+                            <a href="https://jira.croc.ru/browse/{{event.extendedProps.ticket}}" target="_blank">{{event.extendedProps.ticket}}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Responsible:</p>
+                        </td>
+                        <td colspan="2">
+                            <p>{{event.extendedProps.responsible}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Start event:</p>
+                        </td>
+                        <td>
+                            <mat-form-field >
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="show_event_start" disabled="disabled" [value]="event.start">
+                                <mat-datepicker-toggle matSuffix [for]="show_event_start"></mat-datepicker-toggle>
+                                <mat-datepicker #show_event_start></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <div class="col-form-label">
+                                <ngx-timepicker-field [ngModel]="event.timeS" [format]="24" [disabled]="true" [controlOnly]="true" ></ngx-timepicker-field>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>End event:</p>
+                        </td>
+                        <td>
+                            <mat-form-field >
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="show_event_end" disabled="disabled" [value]="event.end">
+                                <mat-datepicker-toggle matSuffix [for]="show_event_end"></mat-datepicker-toggle>
+                                <mat-datepicker #show_event_end></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <div class="col-form-label">
+                                <ngx-timepicker-field [ngModel]="event.timeE" [format]="24" [disabled]="true" [controlOnly]="true" ></ngx-timepicker-field>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>All day:</p>
+                        </td>
+                        <td colspan="2">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input " [checked]="event.allDay" type="checkbox" disabled>
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </app-modal>
+        </div>
+    </div>
 </div>
-
-

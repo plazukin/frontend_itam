@@ -5,9 +5,9 @@ import { CalendarComponent } from '../../calendar/calendar.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
-    //   path: '',
+    //  path: '',
     //   children: [ {
-    //     path: 'dashboard',
+    //    path: 'dashboard',
     //     component: DashboardComponent
     // }]}, {
     // path: '',
